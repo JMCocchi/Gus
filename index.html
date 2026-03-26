@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para siempre en nuestros corazones 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6ee;
+    --peach: #f5c9a8;
+    --blush: #e8a5a5;
+    --rose: #c97b84;
+    --sage: #a8c5a0;
+    --moss: #7a9e73;
+    --lavender: #c5b8d8;
+    --warm-brown: #8b5e52;
+    --gold: #d4a85a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'Lora', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Fondo con textura */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(245,201,168,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(197,184,216,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgba(168,197,160,0.2) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+  }
+
+  /* Encabezado */
+  .header {
+    text-align: center;
+    margin-bottom: 10px;
+    animation: fadeDown 1.2s ease both;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--warm-brown);
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+
+  .header h1 em {
+    color: var(--rose);
+    font-style: italic;
+  }
+
+  .subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--moss);
+    font-size: 1rem;
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Escena principal */
+  .scene {
+    position: relative;
+    width: min(520px, 95vw);
+    margin: 20px auto;
+    animation: fadeUp 1.4s ease 0.3s both;
+  }
+
+  /* Decoración de esquinas */
+  .corner-deco {
+    position: absolute;
+    font-size: 2.2rem;
+    opacity: 0.6;
+    animation: sway 4s ease-in-out infinite;
+  }
+  .corner-deco.tl { top: -10px; left: -10px; animation-delay: 0s; }
+  .corner-deco.tr { top: -10px; right: -10px; animation-delay: 0.5s; }
+  .corner-deco.bl { bottom: -10px; left: -10px; animation-delay: 1s; }
+  .corner-deco.br { bottom: -10px; right: -10px; animation-delay: 1.5s; }
+
+  /* Card */
+  .card {
+    background: rgba(255,252,248,0.85);
+    border-radius: 32px;
+    padding: 40px 30px 30px;
+    box-shadow:
+      0 20px 60px rgba(139,94,82,0.12),
+      0 4px 16px rgba(139,94,82,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(212,168,90,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--peach), var(--blush), var(--lavender), var(--sage), var(--peach));
+    background-size: 200%;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* SVG del cobayito */
+  .guinea-pig-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 20px;
+    position: relative;
+  }
+
+  .guinea-pig-svg {
+    width: min(260px, 65vw);
+    filter: drop-shadow(0 10px 24px rgba(139,94,82,0.22));
+    animation: float 5s ease-in-out infinite;
+  }
+
+  /* Flores decorativas alrededor */
+  .flowers-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 6px 0;
+  }
+
+  .flower {
+    font-size: 1.8rem;
+    animation: sway 3s ease-in-out infinite;
+    display: inline-block;
+    cursor: default;
+    transition: transform 0.2s;
+  }
+  .flower:hover { transform: scale(1.3) rotate(10deg); }
+  .flower:nth-child(2) { animation-delay: 0.3s; }
+  .flower:nth-child(3) { animation-delay: 0.6s; }
+  .flower:nth-child(4) { animation-delay: 0.9s; }
+  .flower:nth-child(5) { animation-delay: 1.2s; }
+  .flower:nth-child(6) { animation-delay: 1.5s; }
+  .flower:nth-child(7) { animation-delay: 1.8s; }
+
+  /* Mensaje */
+  .message {
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .message p {
+    color: #6b4c47;
+    font-size: 0.98rem;
+    line-height: 1.85;
+    margin-bottom: 12px;
+  }
+
+  .message .highlight {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--rose);
+    font-size: 1.1rem;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    opacity: 0.6;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .divider span { font-size: 1.2rem; }
+
+  /* Poema */
+  .poem {
+    background: linear-gradient(135deg, rgba(245,201,168,0.15), rgba(197,184,216,0.15));
+    border-left: 3px solid var(--blush);
+    border-radius: 0 16px 16px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-style: italic;
+    color: #7a5050;
+    line-height: 2;
+    font-size: 0.93rem;
+  }
+
+  /* Footer */
+  .footer-hearts {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    letter-spacing: 6px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Pétalos flotantes */
+  .petal {
+    position: fixed;
+    top: -20px;
+    font-size: 1.2rem;
+    animation: petalFall linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  /* Animaciones */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(-1deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  @keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes petalFall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Pétalos flotantes -->
+<div class="petal" style="left:5%; animation-duration:8s; animation-delay:0s;">🌸</div>
+<div class="petal" style="left:15%; animation-duration:11s; animation-delay:2s;">🌷</div>
+<div class="petal" style="left:28%; animation-duration:9s; animation-delay:4s;">✿</div>
+<div class="petal" style="left:42%; animation-duration:13s; animation-delay:1s;">🌸</div>
+<div class="petal" style="left:58%; animation-duration:10s; animation-delay:3s;">🌺</div>
+<div class="petal" style="left:70%; animation-duration:8.5s; animation-delay:5s;">🌸</div>
+<div class="petal" style="left:83%; animation-duration:12s; animation-delay:0.5s;">🌷</div>
+<div class="petal" style="left:93%; animation-duration:9.5s; animation-delay:2.5s;">✿</div>
+
+<div class="page">
+
+  <div class="header">
+    <h1>Para ti, con todo el amor,<br><em>y para él, con gratitud</em></h1>
+    <p class="subtitle">✦ Pequeñas almas dejan las huellas más grandes ✦</p>
+  </div>
+
+  <div class="scene">
+    <span class="corner-deco tl">🌿</span>
+    <span class="corner-deco tr">🌸</span>
+    <span class="corner-deco bl">🌷</span>
+    <span class="corner-deco br">🌿</span>
+
+    <div class="card">
+
+      <!-- Flores superiores -->
+      <div class="flowers-row">
+        <span class="flower">🌸</span>
+        <span class="flower">🌺</span>
+        <span class="flower">🌼</span>
+        <span class="flower">💐</span>
+        <span class="flower">🌼</span>
+        <span class="flower">🌺</span>
+        <span class="flower">🌸</span>
+      </div>
+
+      <!-- COBAYITO DIBUJADO EN SVG -->
+      <div class="guinea-pig-container">
+        <svg class="guinea-pig-svg" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sombra -->
+          <ellipse cx="152" cy="265" rx="85" ry="14" fill="rgba(0,0,0,0.08)"/>
+
+          <!-- Cuerpo principal -->
+          <ellipse cx="152" cy="185" rx="88" ry="72" fill="#8B3A2A"/>
+
+          <!-- Mancha blanca del pecho/barriga -->
+          <ellipse cx="152" cy="210" rx="45" ry="42" fill="#F5F0E8"/>
+
+          <!-- Mancha negra de la espalda/lomo -->
+          <ellipse cx="130" cy="158" rx="62" ry="52" fill="#2A2A2A"/>
+
+          <!-- Mancha naranja/castaña lateral -->
+          <ellipse cx="185" cy="170" rx="38" ry="36" fill="#B85C2A"/>
+
+          <!-- Mancha blanca que separa colores -->
+          <path d="M148,130 Q160,120 172,128 Q168,150 162,165 Q155,170 148,165 Q142,150 148,130Z" fill="#F5F0E8" opacity="0.7"/>
+
+          <!-- CABEZA -->
+          <ellipse cx="152" cy="120" rx="62" ry="58" fill="#8B3A2A"/>
+
+          <!-- Parte negra de la cabeza (arriba) -->
+          <ellipse cx="140" cy="100" rx="50" ry="40" fill="#2A2A2A"/>
+
+          <!-- Manchas de color en la cabeza -->
+          <ellipse cx="168" cy="110" rx="28" ry="25" fill="#B85C2A"/>
+
+          <!-- Área del hocico (blanca) -->
+          <ellipse cx="152" cy="140" rx="32" ry="24" fill="#F5F0E8"/>
+          <ellipse cx="152" cy="148" rx="22" ry="15" fill="#E8DDD0"/>
+
+          <!-- Nariz rosada -->
+          <ellipse cx="152" cy="148" rx="10" ry="7" fill="#E8A0A0"/>
+          <ellipse cx="152" cy="147" rx="6" ry="4" fill="#D07070"/>
+
+          <!-- Fosas nasales -->
+          <ellipse cx="149" cy="148" rx="2" ry="1.5" fill="#B05555"/>
+          <ellipse cx="155" cy="148" rx="2" ry="1.5" fill="#B05555"/>
+
+          <!-- Boca -->
+          <path d="M148,154 Q152,158 156,154" stroke="#C08080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+          <!-- OJO izquierdo -->
+          <circle cx="128" cy="120" r="12" fill="#1A1A1A"/>
+          <circle cx="128" cy="120" r="9" fill="#2D1A1A"/>
+          <circle cx="128" cy="120" r="5" fill="#1A0A0A"/>
+          <!-- Brillo del ojo -->
+          <circle cx="124" cy="116" r="3" fill="white" opacity="0.9"/>
+          <circle cx="131" cy="123" r="1.5" fill="white" opacity="0.5"/>
+
+          <!-- Ceja/pelaje sobre ojo izquierdo -->
+          <path d="M120,110 Q128,106 136,110" stroke="#1A1A1A" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- Oreja izquierda -->
+          <ellipse cx="100" cy="92" rx="18" ry="22" fill="#8B3A2A"/>
+          <ellipse cx="100" cy="92" rx="11" ry="15" fill="#E09090" opacity="0.8"/>
+
+          <!-- Oreja derecha (parcialmente visible) -->
+          <ellipse cx="200" cy="88" rx="16" ry="20" fill="#7A4030"/>
+          <ellipse cx="200" cy="88" rx="10" ry="13" fill="#D08080" opacity="0.7"/>
+
+          <!-- Bigotes izquierdos -->
+          <line x1="120" y1="143" x2="85" y2="136" stroke="#D8C8B0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+          <line x1="120" y1="147" x2="82" y2="144" stroke="#D8C8B0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+          <line x1="120" y1="151" x2="85" y2="154" stroke="#D8C8B0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+
+          <!-- Bigotes derechos -->
+          <line x1="184" y1="143" x2="218" y2="136" stroke="#D8C8B0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+          <line x1="184" y1="147" x2="220" y2="144" stroke="#D8C8B0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+          <line x1="184" y1="151" x2="217" y2="154" stroke="#D8C8B0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+
+          <!-- Patitas delanteras -->
+          <ellipse cx="118" cy="248" rx="20" ry="12" fill="#7A3020"/>
+          <ellipse cx="186" cy="248" rx="20" ry="12" fill="#7A3020"/>
+
+          <!-- Deditos izquierdos -->
+          <ellipse cx="108" cy="255" rx="5" ry="4" fill="#6A2818"/>
+          <ellipse cx="116" cy="258" rx="5" ry="4" fill="#6A2818"/>
+          <ellipse cx="124" cy="257" rx="5" ry="4" fill="#6A2818"/>
+
+          <!-- Deditos derechos -->
+          <ellipse cx="176" cy="255" rx="5" ry="4" fill="#6A2818"/>
+          <ellipse cx="184" cy="258" rx="5" ry="4" fill="#6A2818"/>
+          <ellipse cx="192" cy="257" rx="5" ry="4" fill="#6A2818"/>
+
+          <!-- Brillito de pelo -->
+          <path d="M125,100 Q135,90 150,95" stroke="rgba(255,255,255,0.15)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- Corazoncito flotando -->
+          <text x="210" y="75" font-size="22" opacity="0.85" style="animation: float 3s ease-in-out infinite;">💕</text>
+          <text x="72" y="85" font-size="16" opacity="0.7">✨</text>
+        </svg>
+      </div>
+
+      <!-- Flores inferiores -->
+      <div class="flowers-row">
+        <span class="flower">🌷</span>
+        <span class="flower">🌿</span>
+        <span class="flower">🌻</span>
+        <span class="flower">🍀</span>
+        <span class="flower">🌻</span>
+        <span class="flower">🌿</span>
+        <span class="flower">🌷</span>
+      </div>
+
+      <div class="divider"><span>🌸</span></div>
+
+      <!-- Mensaje -->
+      <div class="message">
+        <p>
+          El tiempo que pasamos juntos fue corto, pero alcanzó para llenarnos el corazón de alegría.Nos hiciste muy feliz y siempre vas a ser parte de nosotros.
+Peleaste hasta el ultimo segundo y esa fortaleza siempre nos acompañará haciéndonos fuertes como tú lo fuiste.
+<span class="highlight">Te amamos mucho, gus💕</span>
+        </p>
+
+        <div class="poem">
+          Corriste, comiste, chillaste de alegría,<br>
+          llenaste de vida cada rincón del hogar.<br>
+          Ahora corres por prados que no tienen fin,<br>
+          y nosotros te guardamos en el corazón. 🍀
+        </div>
+
+        <p>
+          Gracias por todos los ronroneos,<br>
+          por los soniditos al escuchar la bolsa de heno,<br>
+          por los momentos quietos en los que simplemente <em>estabas</em>.<br>
+          Eso es suficiente para amarte para siempre.
+        </p>
+
+        <div class="divider"><span>💛</span></div>
+
+        <p class="highlight">
+          "El amor que nos dejan los animales<br>
+          nunca ocupa espacio — solo crece."
+        </p>
+      </div>
+
+      <div class="footer-hearts">💛 🧡 🤍</div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
